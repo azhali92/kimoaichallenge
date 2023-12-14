@@ -4,17 +4,28 @@ import HomeScreen from '../ui/HomeScreen';
 import SurfScreen from '../ui/SurfScreen';
 import { NavigationContainer } from '@react-navigation/native';
 
-const Tab = createBottomTabNavigator()
+type RootStackParamList = {
+    Home: undefined;
+    Surf: undefined;
+};
+
+const BottomTab = createBottomTabNavigator<RootStackParamList>()
 
 const MainBottomTabNavigator = () => {
     return (
         <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Surf" component={SurfScreen} />
-            </Tab.Navigator>
+            <BottomTab.Navigator>
+                <BottomTab.Screen name="Home" component={HomeScreen} />
+                <BottomTab.Screen name="Surf" component={SurfScreen} />
+            </BottomTab.Navigator>
         </NavigationContainer>
     );
+}
+
+declare global {
+    namespace ReactNavigation {
+      interface RootParamList extends RootStackParamList {}
+    }
 }
 
 export default MainBottomTabNavigator
