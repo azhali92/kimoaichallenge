@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import HomeScreen from '../ui/HomeScreen';
-import SurfScreen from '../ui/SurfScreen';
+import HomeScreen from '../features/home/HomeScreen';
+import SurfScreen from '../features/surf/SurfScreen';
 import { NavigationContainer } from '@react-navigation/native';
 
 type RootStackParamList = {

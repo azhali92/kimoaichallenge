@@ -5,10 +5,8 @@ import store from './store/store';
 
 const App = () => {
 
-    const appStore = store()
-
     return (
-        <Provider store={appStore}>
+        <Provider store={store}>
             <MainBottomTabNavigator/>
         </Provider>
     )

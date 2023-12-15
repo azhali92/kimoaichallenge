@@ -1,18 +1,13 @@
-import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
-import { thunk } from "redux-thunk";
-import AppReducer from "../reducers/appReducer";
-import { useDispatch } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import homeDataSlice from "../features/home/homeDataSlice";
 
-const reducers = combineReducers({
-    AppReducer
-})
+const store = configureStore({
+    reducer: {
+        home : homeDataSlice
+    },
+});
 
-export type RootState = ReturnType<typeof reducers>;
-
-const store = () => {
-    return createStore(reducers, {} , applyMiddleware(thunk));
-}
-
-export type AppDispatch = ReturnType<typeof store>
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
 export default store
