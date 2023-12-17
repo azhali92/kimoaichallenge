@@ -1,7 +1,7 @@
 import { Text } from "react-native"
 import React from 'react';
 
-const SurfScreen = () => {
+const ActiivityDetailScreen = () => {
     return (
         <>
             <Text>Screen2</Text>
@@ -9,4 +9,4 @@ const SurfScreen = () => {
     )
 }
 
-export default SurfScreen
+export default ActiivityDetailScreen
