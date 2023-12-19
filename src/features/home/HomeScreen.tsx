@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from "react-native"
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import React, { useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,49 +11,50 @@ import { FONT } from "../../constants/font";
 import TitleBar from "../../components/titleBar";
 import Header from "../../components/header";
 import NetInfo from "@react-native-community/netinfo";
+import MyButton from "../../components/mybutton";
+import TravelGuide from "../../components/travelguide";
+import HightlightsCard from "../../components/highlights/highlightsCard";
+import CategoriesItems from "../../components/categories/categoriesItem";
+import TopSpotCard from "../../components/topSpots/topSpotsCard";
+import { styles } from "./styles";
+import { BOOK_A_TRIP, windowHeight } from "../../constants";
+import HomeBanner from "../../components/homebanner";
+import Highlights from "../../components/highlights";
+import Categories from "../../components/categories";
 
 const HomeScreen = () => {
 
-    const navigation = useNavigation()
     const dispatch : AppDispatch = useDispatch();
 
     const highlightData = useSelector(getHighlightData)
-
-    const activityData = useSelector(getActivityData)
 
     const categoryData  = useSelector(getCategoryData) as Array<Object>
 
     //Add this within the App component
     useEffect(() => {
         const unsubscribe = NetInfo.addEventListener((state) => {
-            console.log(state);
+            // console.log(state);
         });
+        dispatch(fetchHighlights())
+        dispatch(fetchCategories())
         return () => {
             unsubscribe();
         };
     }, []);
-    
-
-    const goToSurfScreen = () => {
-        console.log("YOOO")
-        navigation.navigate('Festival');
-        // dispatch(fetchHighlights())
-        // dispatch(fetchActivities('Surfing'))
-        // dispatch(fetchCategories())
-    }
 
     return (
         <>
-            {console.log("categoryData --> ", categoryData?.[0])}
-            <TouchableOpacity onPress={goToSurfScreen}><Text style={{fontFamily : FONT.IBM_PLEX_REGULAR, fontSize : 30}}>Screen1@</Text></TouchableOpacity>
-            <CustomIcon name={"home"} size={24} color="red"></CustomIcon>
-            <FastImage
-                style={{ width: 100, height: 100 }}
-                source={require('./../../assets/images/guide.png')}
-            />
-            <TitleBar/>
-            <Header text="fff"/>
-
+            <View style={styles.container}>
+                <View style={styles.bookatrip}><MyButton text={BOOK_A_TRIP} ></MyButton></View>
+                <ScrollView>
+                    <TitleBar/>
+                    <HomeBanner/>
+                    <Highlights highlightsData={highlightData}/>
+                    <Categories categoriesData={categoryData}/>
+                    <TravelGuide/>
+                    <View style={styles.bottomGap}></View>
+                </ScrollView>
+            </View>
 
         </>
     )
