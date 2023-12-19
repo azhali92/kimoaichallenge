@@ -13,6 +13,9 @@ const setOpen = () => {
     setIsOpen(!isOpen)
 }
 
+{console.log("GHHHH", props.text)}
+
+
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={setOpen}><Text style={styles.text}>{props.text}</Text>
@@ -33,12 +36,14 @@ const styles = StyleSheet.create({
         backgroundColor : COLOR.WHITE,
     },
     text : {
-        fontFamily : FONT.IBM_PLEX_REGULAR,
-        fontSize : 16
+        fontFamily : FONT.IBM_PLEX_BOLD,
+        fontSize : 16,
+        color : COLOR.BLACK
     },
     text2 : {
         fontFamily : FONT.IBM_PLEX_REGULAR,
-        fontSize : 12
+        fontSize : 12,
+        color : COLOR.BLACK
     },
     arrowImg : { 
         position : 'absolute',
