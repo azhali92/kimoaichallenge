@@ -13,9 +13,6 @@ const setOpen = () => {
     setIsOpen(!isOpen)
 }
 
-{console.log("GHHHH", props.text)}
-
-
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={setOpen}><Text style={styles.text}>{props.text}</Text>
